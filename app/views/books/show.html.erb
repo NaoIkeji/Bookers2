@@ -1,0 +1,28 @@
+<h2>Book detail</h2>
+
+  <table>
+		<tbody>
+				<tr>
+					<td></td>
+					<td><%= @book.title %></td>
+					<td><%= @book.body %></td>
+					<td><%= link_to "Edit",edit_book_path(@book.id) %></td>
+					<td><%= link_to "Destroy",book_path,method: :delete,"data-confirm" => "本当に消しますか？" %></td>
+				</tr>
+		   </tbody>
+		</table>
+
+
+
+<h2>New boook</h2>
+<%= form_for(@book) do |f| %>
+	<label>Title<br>
+		<%= f.text_field :title %>
+	</label>
+	<br>
+	<label>Opinion<br>
+		<%= f.text_area :body %>
+	</label>
+	<br>
+	<%= f.submit "Create Book" %>
+<% end %>
