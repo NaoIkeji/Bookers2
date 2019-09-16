@@ -1,0 +1,18 @@
+<h2>User info</h2>
+
+<%= form_for(@user) do |f| %>
+	<label>Name<br>
+		<%= f.text_field :name %>
+	</label>
+	<br>
+	<label>Image<br>
+		<%= f.attachment_field :profile_image %>
+	</label>
+	<br>
+	<label>Introduction<br>
+		<%= f.text_field :introduction %>
+	</label>
+	<%= f.submit "Update User" %>
+<% end %>
+
+<p>CopyRight Infratop.inc</p>
