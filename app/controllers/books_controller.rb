@@ -10,13 +10,13 @@ class BooksController < ApplicationController
 	end
 
 	def create
-		book = Book.new(book_params)
-		book.user_id = current_user.id
-	 	if book.save
+		@book = Book.new(book_params)
+		@book.user_id = current_user.id
+		@user = current_user
+	 	if @book.save
 			redirect_to books_path,notice: 'You have creatad book successfully.'
 		else
 			@books = Book.all.order(created_at: :asc)
-			@book = Book.new
 			render :index
 		end
 	end

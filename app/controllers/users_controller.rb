@@ -5,12 +5,20 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		user = User.new(user_params)
-		user.save
-		redirect_to users_path(user.id)
+		book = Book.new(book_params)
+		book.user_id = current_user.id
+		@user = current_user
+	 	if book.save
+			redirect_to books_path,notice: 'You have creatad book successfully.'
+		else
+			@books = Book.all.order(created_at: :asc)
+			@book = Book.new
+			render :index
+		end
 	end
 
 	def index
+
 		@user = current_user
 		@users = User.all
 		@book = Book.new
