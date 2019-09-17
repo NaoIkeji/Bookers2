@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+	before_action :authenticate_user!
+
+
 	def new
 		@user = User.new
 		@book = Book.new
@@ -9,7 +12,7 @@ class UsersController < ApplicationController
 		book.user_id = current_user.id
 		@user = current_user
 	 	if book.save
-			redirect_to books_path,notice: 'You have creatad book successfully.'
+			redirect_to book_path(book.id),notice: 'You have creatad book successfully.'
 		else
 			@books = Book.all.order(created_at: :asc)
 			@book = Book.new
@@ -18,10 +21,10 @@ class UsersController < ApplicationController
 	end
 
 	def index
-
 		@user = current_user
 		@users = User.all
 		@book = Book.new
+		@books = @user.books
 	end
 
 	def show
@@ -32,17 +35,25 @@ class UsersController < ApplicationController
 
 	def edit
 		@user = User.find(params[:id])
+		if @user.id != current_user.id
+			redirect_to user_path(current_user)
+		end
 	end
 
 	def update
-		user = User.find(params[:id])
-		user.update(user_params)
-		redirect_to user_path(user.id),notice: 'You have updated user successfully.'
+		@user = User.find(params[:id])
+		if @user.id != current_user.id
+			redirect_to user_path(@user.id)
+		elsif @user.update(user_params)
+			redirect_to user_path(@user.id),notice: 'You have updated user successfully.'
+		else
+			render :edit
+		end
 	end
 
 	private
 	def user_params
-		params.require(:user).permit(:name, :introduction, :profile_image_id)
+		params.require(:user).permit(:name, :introduction, :profile_image)
 	end
 
 end
