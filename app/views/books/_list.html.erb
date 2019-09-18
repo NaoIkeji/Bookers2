@@ -1,13 +1,15 @@
-<h2>New boook</h2>
-<%= form_for(book) do |f| %>
-  <label>Title<br>
-    <%= f.text_field :title %>
-  </label>
-  <br>
-  <label>Opinion<br>
-    <%= f.text_area :body %>
-  </label>
-  <br>
-  <%= f.submit "Create Book" %>
-<% end %>
+<div class="container">
+	<h2>New boook</h2>
+	<%= form_for(book) do |f| %>
+	  <label>Title<br>
+	    <%= f.text_field :title %>
+	  </label>
+	  <br>
+	  <label>Opinion<br>
+	    <%= f.text_area :body %>
+	  </label>
+	  <br>
+	  <%= f.submit "Create Book",class:"btn btn-primary col-lg-2" %>
+	<% end %>
+</div>
 
