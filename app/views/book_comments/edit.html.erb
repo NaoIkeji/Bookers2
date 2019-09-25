@@ -1,0 +1,25 @@
+<div class="container">
+	<div class="row">
+	  <div class="col-lg-3"></div>
+	    <div class="col-lg-6">
+		  <h2>Editing Comment</h2>
+		  <%= form_for(@comment, url: "/books/#{@book.id}/book_comments/#{@comment.id}", method: :patch) do |f| %>
+		   <div class="form-group">
+		    <label class="control-label" for="usage1input2">
+		    Comment
+		    </label>
+				<%= f.text_area :comment, class:"form-control input-lg" %>
+		   </div>
+			<%= f.submit "Create Book",class:"btn btn-primary col-lg-12" %>
+			<% end %>
+			<div class="w-100"></div>
+			 <p class="col-lg-10">
+			 <%= link_to "Show", book_path(@book) %>
+			 |
+			 <%= link_to "Back", book_path(@book) %>
+			 </p>
+          <div class="col-lg-3"></div>
+		</div>
+	</div>
+</div>
+
