@@ -33,6 +33,32 @@ class UsersController < ApplicationController
 		@book = Book.new
 	end
 
+	def follow(other_user)
+		following << other_user
+	end
+
+	def unfollow(other_user)
+		active_relationships.find_by(followed_id: other_user.id).destroy
+	end
+
+	def following?(other_user)
+		following.include?(other_user)
+	end
+
+	def following
+		@book = Book.new
+		@user = User.find(params[:id])
+		@users = @user.following
+		render :index
+	end
+
+	def followers
+		@book = Book.new
+		@user = User.find(params[:id])
+		@users = @user.followers
+		render :index
+	end
+
 	def edit
 		@user = User.find(params[:id])
 		if @user.id != current_user.id
