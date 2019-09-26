@@ -49,14 +49,12 @@ class UsersController < ApplicationController
 		@book = Book.new
 		@user = User.find(params[:id])
 		@users = @user.following
-		render :index
 	end
 
 	def followers
 		@book = Book.new
 		@user = User.find(params[:id])
 		@users = @user.followers
-		render :index
 	end
 
 	def edit
