@@ -10,6 +10,7 @@
   <% end %>
 
 
+
 <div class="container">
 		<div class="row">
 
@@ -19,9 +20,19 @@
 			</div>
 
 
-	<h2>Users</h2>
 
 			<div class="col-lg-9">
+				<h2>Users</h2>
+
+
+
+					<%= form_tag(user_search_path, :method => "get") do %>
+						<%= text_field_tag :search %>
+						<%= submit_tag "Search", :name => nil %>
+					<% end %>
+
+				 
+
 				<table class="table table-striped">
 					<thead>
 						<tr>

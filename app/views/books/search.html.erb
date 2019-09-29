@@ -1,0 +1,12 @@
+<div class="container">
+	<h2>Search Book</h2>
+	<ul>
+		<% @books.each do |book| %>
+			<li>
+				<%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg",size:'60x60' %>
+				<%= link_to book.title,book_path(book.id) %>
+				<%= book.body %>
+			</li>
+		<% end %>
+	</ul>
+</div>

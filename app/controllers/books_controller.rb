@@ -3,14 +3,18 @@ class BooksController < ApplicationController
 
 	protect_from_forgery :except => [:create, :edit, :update]
 
-	def new
-		@book = Book.new
-	end
+	# def new
+	# 	@book = Book.new
+	# end
 
 	def index
 		@user = current_user
 		@book = Book.new
 		@books = Book.all.order(created_at: :asc)
+	end
+
+	def search
+		@books = Book.search(params[:search])
 	end
 
 	def create
@@ -58,6 +62,7 @@ class BooksController < ApplicationController
 		book.destroy
 		redirect_to books_path
 	end
+
 
 	private
 	def book_params

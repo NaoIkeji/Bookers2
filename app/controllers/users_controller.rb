@@ -3,10 +3,10 @@ class UsersController < ApplicationController
 
 	protect_from_forgery :except => [:edit, :update]
 
-	def new
-		@user = User.new
-		@book = Book.new
-	end
+	# def new
+	# 	@user = User.new
+	# 	@book = Book.new
+	# end
 
 	def create
 		book = Book.new(book_params)
@@ -26,6 +26,10 @@ class UsersController < ApplicationController
 		@users = User.all
 		@book = Book.new
 		@books = @user.books
+	end
+
+	def search
+		@users= User.search(params[:search])
 	end
 
 	def show
