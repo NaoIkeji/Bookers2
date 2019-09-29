@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
 	before_action :authenticate_user!
 
+	protect_from_forgery :except => [:create, :edit, :update]
+
 	def new
 		@book = Book.new
 	end

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!
 
+	protect_from_forgery :except => [:edit, :update]
 
 	def new
 		@user = User.new

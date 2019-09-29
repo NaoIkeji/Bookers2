@@ -1,19 +1,36 @@
-<h2>Users Follows</h2>
-
-<% @users.each do |user| %>
-
-  <p><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg",size:'60x60' %>
-  </p>
-  <p>
-  	<%= link_to user.name, user_path(user) %>
-  </p>
-
-  <% if current_user != user %>
-	   <% if Relationship.find_by(follower_id: current_user.id,followed_id: user.id) %>
-		  	<p><%= link_to "フォロー済み", user_relationships_path(user), method: :delete %>
-		  	</p>
-		  <% else %>
-		  	<p><%= link_to "フォローする", user_relationships_path(user), method: :post %></p>
-	   <% end %>
-  <% end %>
-<% end %>
+<div class="container">
+  <div class="row">
+      <h2>Users Follows</h2>
+       <div class="col-lg-6">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th></th>
+              <th>name</th>
+            </tr>
+         </thead>
+        <tbody>
+        <% @users.each do |user| %>
+          <tr>
+              <td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg",size:'60x60' %>
+              </td>
+              <td>
+              	<%= link_to user.name, user_path(user) %>
+              </td>
+              <td>
+                <% if current_user != user %>
+              	   <% if Relationship.find_by(follower_id: current_user.id,followed_id: user.id) %>
+              		  	<%= link_to "フォロー済み", user_relationships_path(user), method: :delete %>
+              		  <% else %>
+              		  	<%= link_to "フォローする", user_relationships_path(user), method: :post %>
+              	   <% end %>
+                <% end %>
+              </td>
+             </tr>
+          <% end %>
+         </tbody>
+        </table>
+        <P><%= link_to "Back", users_path %></P>
+       </div>
+  </div>
+</div>

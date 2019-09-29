@@ -1,15 +1,19 @@
 <div class="container">
 	<h2>New boook</h2>
-	<%= form_for(book) do |f| %>
-	  <label>Title<br>
-	    <%= f.text_field :title %>
-	  </label>
-	  <br>
-	  <label>Opinion<br>
-	    <%= f.text_area :body %>
-	  </label>
-	  <br>
-	  <%= f.submit "Create Book",class:"btn btn-primary col-lg-2" %>
-	<% end %>
+
+ <form class="new_book" id="new_book" action="/books" accept-charset="UTF-8" method="post">
+	<div>
+		<label for="name">Title</label>
+		<br>
+		<input type="text" name="book[title]" id="book_title">
+	</div>
+	<div>
+		<label for="title">Opinion</label>
+		<br>
+		<textarea name="book[body]" id="book_body" ></textarea>
+	</div>
+	<input type="submit" name="commit" value="Create Book" class="btn btn-primary col-lg-2" >
+ </form>
+
 </div>
 

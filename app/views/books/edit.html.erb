@@ -15,17 +15,27 @@
 		    </div>
 		  <% end %>
 		<div>
-		<%= form_for(@book) do |f| %>
-		<div class="form-group">
-		<label class="control-label" for="usage1input2">Title</label>
-				<%= f.text_field :title, class:"form-control input-sm" %>
-		</div>
-		<div class="form-group">
-		<label class="control-label" for="usage1input2">Opinion</label>
-			<%= f.text_area :body, class:"form-control input-lg" %>
-		</div>
-			<%= f.submit "Create Book",class:"btn btn-primary col-lg-12" %>
-		<% end %>
+
+		<form class="edit_book" action="/books/<%= @book.id %>" id="edit_book_<%= @book.id %>" accept-charset="UTF-8" method="post">
+
+			<input name="utf8" type="hidden" value="" >
+			<input type="hidden" name="_method" value="patch" />
+			<input type="hidden" name="book[user_id]" value="<%= @book.user_id %>" />
+
+			<div class="form-group">
+				<label form="name" class="control-label" for="usage1input2">Title</label>
+				<br>
+				<input type="text" value="<%= @book.title %>" name="book[title]" id="book_title" class="form-control input-sm">
+			</div>
+			<div class="form-group">
+				<label form="title" lass="control-label" for="usage1input2">opinion</label>
+				<br>
+				<textarea name="book[body]" id="book_body" class="form-control input-lg"><%= @book.body %></textarea>
+			</div>
+				<input type="submit" name="commit" value="Create Book" class="btn btn-primary col-lg-12">
+		</form>
+
+
 		<div class="w-100"></div>
 		<p class="col-lg-10">
 		<%= link_to "Show", book_path %>
@@ -38,3 +48,4 @@
   <div class="col-lg-3"></div>
 </div>
 </div>
+
